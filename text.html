@@ -1,0 +1,18 @@
+<br /><br />
+<hr />
+Had some fun today. Implemented a RPROP training algorithm (RPROP+ to be more exact; <a href="http://www.heatonresearch.com/wiki/Resilient_Propagation">pseudocode</a>;  <a href="http://www.informatik.uni-osnabrueck.de/barbara/lectures/ml/papers/rprop.pdf" target="_new">paper</a>) to train an artificial neuron network and it now "recognizes", somehow, digits.<br />
+Click on the digit to view the sample used for training. Only one sample for each digit so accuracy is not anywhere near reasonable if key pixels are not in place. Should be more accurate if more variations for each digits are used.<br />
+Network topology:
+<ul>
+    <li>input: 64</li>
+    <li>hidden: 69 (based on the number of clouds in the sky yesterday :P)</li>
+    <li>output: 10 (you can interpret the X-th output as the probability that input is digit X; outputs are numbered 0 to 9 of course)</li>
+</ul>
+Training:<br />
+<ul>
+    <li>Batch training.</li>
+    <li>Gradients summed during each epoch. Weights and biases are updated at the end of each epoch.</li>
+    <li>Samples are shuffled before fed into the network (this epoch training order is 0,4,1,6,8,... and the next epoch the order is 9,4,2,8,... you get the idea)</li>
+    <li>Training stops when running each error for each output is below desired value (I went for 0.1; so for input for digit 3, every output should be <0.1 except the 3rd output which sould be >0.9)</li>
+    <li>Took 36 epochs</li>
+</ul>
